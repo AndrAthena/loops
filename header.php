@@ -8,12 +8,12 @@
   <?php wp_head() ?>
 </head>
 <body <?php body_class() ?>>
+  <header>
+    <div class="container h-100">
+      <nav class="navbar navbar-expand-lg h-100">
+        <?php get_template_part( 'template-parts/custom', 'logo' ) ?>
+        <?php get_template_part( 'template-parts/site', 'menu' ) ?>
+      </nav>
+    </div>
+  </header>
   <main>
-    <header>
-      <div class="container h-100">
-        <nav class="navbar navbar-expand-lg h-100">
-          <?php get_template_part( 'template-parts/custom', 'logo' ) ?>
-          <?php get_template_part( 'template-parts/site', 'menu' ) ?>
-        </nav>
-      </div>
-    </header>

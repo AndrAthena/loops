@@ -25,8 +25,8 @@
       <div class="container">
         <div class="d-flex align-items-center">
           <div>
-            <a class=" border-right pr-3 mr-2" href="<?php echo get_page_by_title( 'Mentions légales' ) ?>">Mentions légales</a>
-            <a href="<?php echo get_page_by_title( 'CGV' ) ?>">CGV</a>
+            <a class=" border-right pr-3 mr-2" href="<?php echo get_page_link( get_page_by_title( 'Mentions légales' ) ) ?>">Mentions légales</a>
+            <a href="<?php echo get_page_link( get_page_by_title( 'CGV' ) )  ?>">CGV</a>
           </div>
           <div class="ml-auto">
             <span>Copyright © <?php echo date('Y') ?> <a href="<?php bloginfo( 'url' )?>"><?php bloginfo( 'url' )?></a> - Design par Agence de communication Montpellier</span>

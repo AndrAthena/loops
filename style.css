@@ -31,7 +31,7 @@ h2 {
 }
 
 p {
-  font-size: 1.125rem;
+  font-size: 1rem;
 }
 
 /*==========================================*
@@ -44,10 +44,11 @@ p {
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 100%;
+    max-width: 1650px;
   }
 }
 
+/* 
 @media (min-width: 1600px) {
   .container {
     max-width: 1440px;
@@ -58,7 +59,7 @@ p {
   .container {
     max-width: 1650px;
   }
-}
+} */
 
 .text-primary {
   color: var(--primary) !important;
@@ -66,6 +67,22 @@ p {
 
 .bg-grey {
   background-color: #f4f4f4;
+}
+
+/*==========================================*
+ *         Elementor: element               *
+ *==========================================*/
+
+.elementor-slide-button::after,
+.elementor-button-text::after {
+  content: '>';
+  margin-left: 0.5rem;
+  color: inherit;
+}
+
+.elementor-img-cover img {
+  height: 100%;
+  object-fit: cover;
 }
 
 /*==========================================*
@@ -78,7 +95,11 @@ header {
 }
 
 .home header {
+  position: fixed;
+  top: 0;
+  width: 100%;
   background-color: transparent;
+  z-index: 100;
 }
 
 .navbar {
@@ -220,4 +241,29 @@ footer .footer-bottom a {
 
 footer .footer-bottom .border-right {
   border-color: var(--primary) !important;
+}
+
+/*==========================================*
+ *           Home: Hero slider              *
+ *==========================================*/
+
+#hero-slide .elementor-slide-heading span {
+  padding: 0rem 1rem 0.25rem;
+  background-color: #fff;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+#mission-description {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+#mission-description::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 40px;
+  margin-top: 0.5rem;
+  border-left: 2px solid var(--primary);
 }
