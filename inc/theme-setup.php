@@ -14,7 +14,7 @@ function loops_theme_setup () {
   add_theme_support( 'post-formats', array('image', 'gallery', 'quote', 'audio', 'video') );
   add_post_type_support( 'page', array( 'excerpt', 'page-attributes' ) );
 
-  load_textdomain( "loops", get_template_directory_uri() . '/languages' );
+  load_theme_textdomain( "loops", get_template_directory_uri() . '/languages' );
 
   register_nav_menus( array(
     "main"    => __( "Primaire", "loops" ),
