@@ -279,3 +279,13 @@ footer .footer-bottom .border-right {
 #nous-rejoindre::after {
   border-color: #fff !important;
 }
+
+.elementor-portfolio-item__overlay {
+  left: 1rem !important;
+  top: 1rem !important;
+  right: 1rem !important;
+  bottom: 1rem !important;
+  width: calc(100% - 2rem);
+  height: calc(100% - 2rem);
+  background-color: #ffffff80 !important;
+}
