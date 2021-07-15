@@ -66,12 +66,10 @@ function loops_breadcrumb() {
         $slug = $post_type->rewrite;
         echo '<a href="' . $homeLink . '/' . $slug['slug'] . '/">' . $post_type->labels->singular_name . '</a>';
         if ($showCurrent == 1) echo ' ' . $delimiter . ' ' . $before . get_the_title() . $after;
-      } else {
-        $cat = get_the_category(); $cat = $cat[0];
-        $cats = get_category_parents($cat, TRUE, ' ' . $delimiter . ' ');
-        if ($showCurrent == 0) $cats = preg_replace("#^(.+)\s$delimiter\s$#", "$1", $cats);
-        echo $cats;
-        if ($showCurrent == 1) echo $before . get_the_title() . $after;
+      }
+      else {
+        echo '<a href="' . get_post_type_archive_link( get_post_type() ) . '">' . __( 'Actualités', 'loops' ) . '</a>';
+        if ($showCurrent == 1) echo ' ' . $delimiter . ' ' . $before . get_the_title() . $after;
       }
  
     } elseif ( !is_single() && !is_page() && get_post_type() != 'post' && !is_404() ) {

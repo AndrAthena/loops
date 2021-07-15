@@ -31,6 +31,18 @@ h2 {
   font-size: 1.875rem;
 }
 
+h3 {
+  font-size: 1.5em;
+}
+
+h4 {
+  font-size: 1.25em;
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
 p {
   font-size: 1rem;
 }
@@ -205,6 +217,30 @@ header.scrolled {
 
 .breadcrumb .delimiter {
   margin: 0 0.5rem;
+}
+
+/*==========================================*
+ *           Post : pagination              *
+ *==========================================*/
+
+.pagination .previous,
+.pagination .next {
+  display: flex;
+  max-width: 200px;
+}
+
+.pagination .previous a,
+.pagination .next a {
+  color: initial;
+  transition: all ease 0.2s;
+}
+
+.pagination .previous a:hover,
+.pagination .previous a:focus,
+.pagination .next a:hover,
+.pagination .next a:focus {
+  text-decoration: none;
+  color: var(--primary);
 }
 
 /*==========================================*
