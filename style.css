@@ -223,10 +223,37 @@ header.scrolled {
  *           Post : pagination              *
  *==========================================*/
 
+.single .pagination {
+  flex-wrap: wrap;
+  min-width: 100%;
+}
+
 .pagination .previous,
 .pagination .next {
   display: flex;
-  max-width: 200px;
+  margin-bottom: 1.5rem;
+}
+
+.pagination .previous img,
+.pagination .next img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+@media (min-width: 651px) {
+  .pagination .previous,
+  .pagination .next {
+    display: flex;
+    max-width: 300px;
+    min-width: initial;
+  }
+
+  .pagination .previous img,
+  .pagination .next img {
+    width: 200px;
+    height: 200px;
+  }
 }
 
 .pagination .previous a,
@@ -324,4 +351,22 @@ footer .footer-bottom .border-right {
   width: calc(100% - 2rem);
   height: calc(100% - 2rem);
   background-color: #ffffff80 !important;
+}
+
+/*==========================================*
+ *              Page : Single               *
+ *==========================================*/
+
+.single .post-thumbnail {
+  max-width: 100%;
+  height: auto;
+  max-height: 350px;
+  object-fit: cover;
+}
+
+@media (min-width: 992px) {
+  .single .post-thumbnail {
+    height: 500px;
+    max-height: initial;
+  }
 }
