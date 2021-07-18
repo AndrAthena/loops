@@ -18,7 +18,7 @@ function loops_nav_menu_link_attributes( $atts, $item, $args ) {
 }
 
 function loops_breadcrumb() {
-  $showOnHome = 0; // 1 - show breadcrumbs on the homepage, 0 - don't show
+  $showOnHome = 1; // 1 - show breadcrumbs on the homepage, 0 - don't show
   $delimiter = '<span class="delimiter">/</span>'; // delimiter between crumbs
   $home = 'Accueil'; // text for the 'Home' link
   $showCurrent = 1; // 1 - show current post/page title in breadcrumbs, 0 - don't show
@@ -28,19 +28,17 @@ function loops_breadcrumb() {
   global $post;
   $homeLink = get_bloginfo('url');
  
-  if (is_home() || is_front_page()) {
- 
-    if ($showOnHome == 1) echo '<div id="crumbs"><a href="' . $homeLink . '">' . $home . '</a></div>';
- 
-  } else {
- 
     echo '<a href="' . $homeLink . '">' . $home . '</a> ' . $delimiter . ' ';
- 
+
+    if( is_home() ) {
+      echo $before . 'Actualités';
+    }
+
     if ( is_category() ) {
       $thisCat = get_category(get_query_var('cat'), false);
       if ($thisCat->parent != 0) echo get_category_parents($thisCat->parent, TRUE, ' ' . $delimiter . ' ');
       if( get_post_type() == 'post' ) {
-        echo $before . '<a href="' . get_post_type_archive_link('post') . '">Actualité</a>' . $delimiter . single_cat_title('', false) . $after;
+        echo $before . '<a href="' . get_post_type_archive_link('post') . '">Actualités</a>' . $delimiter . single_cat_title('', false) . $after;
       } else {
         echo $before . 'Catégorie : "' . single_cat_title('', false) . '"' . $after;
       }
@@ -64,7 +62,7 @@ function loops_breadcrumb() {
       if ( get_post_type() != 'post' ) {
         $post_type = get_post_type_object(get_post_type());
         $slug = $post_type->rewrite;
-        echo '<a href="' . $homeLink . '/' . $slug['slug'] . '/">' . $post_type->labels->singular_name . '</a>';
+        echo '<a href="' . $homeLink . '/' . $slug['slug'] . '/">' . get_post_type() == 'enseigne' ? 'Nos enseignes' : $post_type->labels->singular_name . '</a>';
         if ($showCurrent == 1) echo ' ' . $delimiter . ' ' . $before . get_the_title() . $after;
       }
       else {
@@ -112,14 +110,28 @@ function loops_breadcrumb() {
     } elseif ( is_404() ) {
       echo $before . 'Error 404' . $after;
     }
- 
-    // if ( get_query_var('paged') ) {
-    //   if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) echo ' (';
-    //   echo __('Page') . ' ' . get_query_var('paged');
-    //   if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) echo ')';
-    // }
- 
-  }
 
 }
 add_filter( 'nav_menu_link_attributes', 'loops_nav_menu_link_attributes', 10, 4 );
+
+function loops_pagination($class = '') {
+  global $wp_query;
+  $pages = paginate_links(
+    array(
+      'type'      => 'array',
+      'total'     => $wp_query->max_num_pages,
+      'prev_text' => '<',
+      'next_text' => '>',
+    )
+  );
+  if($pages != NULL) {
+    echo '<div class="pagination ' . $class . '">';
+    foreach ($pages as $page) {
+      $active = strpos($page, 'current') ? " active" : "";
+      echo '<li class="page-item' . $active  . '">';
+      echo str_replace( 'page-numbers', 'page-link', $page );
+      echo "</li>";
+    }
+    echo "</div>";
+  } else return;
+}

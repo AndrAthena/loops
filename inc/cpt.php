@@ -42,7 +42,7 @@ function loops_register_custom_post_type() {
   
   $labels_enseigne = array(
     'name' => __( 'Enseignes', 'loops' ),
-    'singular_name' => __( 'Enseigne', 'loops' ),
+    'singular_name' => __( 'Nos Enseignes', 'loops' ),
     'menu_name' => __( 'Enseigne', 'loops' ),
     'name_admin_bar' => __( 'Enseigne', 'loops' ),
     'all_items' => __( 'Tous les enseignes', 'loops' ),
@@ -75,7 +75,7 @@ function loops_register_custom_post_type() {
     'show_in_rest' => true,
     'publicly_queryable' => true,
     'capability_type' => 'post',
-    'rewrite' => '/enseignes'
+    'rewrite' => '/nos-enseignes'
   );
   
   register_post_type( 'enseigne', $args_enseigne );

@@ -38,7 +38,9 @@
                   <span>Précédent</span><br>
                   <h5><?php echo $previous->post_title ?></h5>
                 </div>
-                <img src="<?php echo esc_url( get_the_post_thumbnail_url( $previous->ID, 'medium' ) ) ?>" alt="<?php echo $previous->post_title ?>">
+                <?php if( has_post_thumbnail($previous->ID)) : ?>
+                  <img src="<?php echo esc_url( get_the_post_thumbnail_url( $previous->ID, 'medium' ) ) ?>" alt="<?php echo $previous->post_title ?>">
+                <?php endif; ?>
               </a>
             </li>
           <?php endif; ?>
@@ -52,7 +54,9 @@
                   <span>Suivant</span><br>
                   <h5><?php echo $next->post_title ?></h5>
                 </div>
-                <img src="<?php echo esc_url( get_the_post_thumbnail_url( $next->ID, 'medium' ) ) ?>" alt="<?php echo $next->post_title ?>">
+                <?php if( has_post_thumbnail($next->ID)) : ?>
+                  <img src="<?php echo esc_url( get_the_post_thumbnail_url( $next->ID, 'medium' ) ) ?>" alt="<?php echo $next->post_title ?>">
+                <?php endif; ?>
               </a>
               <span class="ml-3">></span>
             </li>
