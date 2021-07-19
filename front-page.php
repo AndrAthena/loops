@@ -12,8 +12,6 @@ endwhile; endif;
 
 ?>
 
-<?php get_template_part( 'template-parts/content', 'portfolio' ) ?>
-
 </div>
 
 <?php get_footer() ?>
