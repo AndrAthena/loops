@@ -33,9 +33,11 @@
         </div>
         <div class="post-content">
           <?php the_title( '<h2>', '</h2>' ) ?>
-          <p class="text-box">
-            <?php echo wp_trim_words( get_the_content(), 40 ) ?>
-          </p>
+          <div class="text-box">
+            <p>
+              <?php echo wp_trim_words( get_the_content(), 40 ) ?>
+            </p>
+          </div>
           <a href="<?php the_permalink() ?>" class="btn text-primary text-uppercase font-weight-bold text-left px-0">Lire la suite ></a>
         </div>
       </article>
