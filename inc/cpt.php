@@ -22,7 +22,7 @@ function loops_register_custom_post_type() {
     'description' => __( '', 'loops' ),
     'labels' => $labels_collab,
     'menu_icon' => 'dashicons-groups',
-    'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'post-formats'),
+    'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'post-formats', 'custom-fields'),
     'public' => true,
     'show_ui' => true,
     'show_in_menu' => true,
@@ -38,7 +38,7 @@ function loops_register_custom_post_type() {
     'capability_type' => 'post',
   );
   
-  register_post_type( 'equipe', $args_collab );
+  register_post_type( 'collaborateur', $args_collab );
   
   $labels_enseigne = array(
     'name' => __( 'Enseignes', 'loops' ),
@@ -61,7 +61,7 @@ function loops_register_custom_post_type() {
     'description' => __( '', 'loops' ),
     'labels' => $labels_enseigne,
     'menu_icon' => 'dashicons-admin-site-alt3',
-    'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'post-formats'),
+    'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'post-formats', 'custom-fields'),
     'public' => true,
     'show_ui' => true,
     'show_in_menu' => true,
@@ -75,7 +75,7 @@ function loops_register_custom_post_type() {
     'show_in_rest' => true,
     'publicly_queryable' => true,
     'capability_type' => 'post',
-    'rewrite' => '/nos-enseignes'
+    'rewrite' => array( 'slug' => 'nos-enseignes' )
   );
   
   register_post_type( 'enseigne', $args_enseigne );
