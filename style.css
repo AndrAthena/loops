@@ -140,6 +140,30 @@ p {
   z-index: 0;
 }
 
+.img-cover {
+  width: 100%;
+  object-fit: cover;
+}
+
+.btn {
+  text-transform: uppercase;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.btn:hover,
+.btn:focus {
+  color: var(--primary);
+}
+
+.btn::after {
+  content: '>';
+  margin-left: 0.5rem;
+  font-family: 'Poppins';
+  color: inherit;
+  font-weight: inherit;
+}
+
 /*==========================================*
  *                  Header                  *
  *==========================================*/
@@ -582,4 +606,20 @@ article.post .post-content > * {
 #portfolio .card-portfolio:focus .portfolio-overlay {
   opacity: 1;
   visibility: visible;
+}
+
+/*==========================================*
+ *          Page : Nos enseignes            *
+ *==========================================*/
+
+#nos-enseignes article {
+  margin-top: 80px;
+}
+
+#nos-enseignes article img {
+  max-height: 950px;
+}
+
+#nos-enseignes .text-pad {
+  padding: 5rem;
 }

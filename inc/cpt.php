@@ -42,7 +42,7 @@ function loops_register_custom_post_type() {
   
   $labels_enseigne = array(
     'name' => __( 'Enseignes', 'loops' ),
-    'singular_name' => __( 'Nos Enseignes', 'loops' ),
+    'singular_name' => __( 'Enseigne', 'loops' ),
     'menu_name' => __( 'Enseigne', 'loops' ),
     'name_admin_bar' => __( 'Enseigne', 'loops' ),
     'all_items' => __( 'Tous les enseignes', 'loops' ),
