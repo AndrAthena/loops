@@ -24,9 +24,9 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row pb-5 border-bottom">
       <div class="col-lg-8 mx-auto">
-        <nav class="pagination">
+        <nav class="pagination h-auto">
           <?php
             $previous = get_previous_post( true );
             if($previous):
