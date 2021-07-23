@@ -211,11 +211,16 @@ header.scrolled {
 
 .navbar-nav .nav-item .nav-link {
   position: relative;
-  padding-left: 1rem;
-  padding-right: 1rem;
   font-size: 1rem;
   color: var(--primary);
   transition: all 0.2s ease;
+}
+
+@media (min-width: 1201px) {
+  .navbar-nav .nav-item .nav-link {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 .home header .navbar-nav .nav-item .nav-link {
@@ -456,6 +461,7 @@ footer .footer-bottom .border-right {
  *           Home: Hero slider              *
  *==========================================*/
 
+#banner h1 span,
 #hero-slide .elementor-slide-heading span {
   padding: 0rem 1rem 0.25rem;
   background-color: #fff;
