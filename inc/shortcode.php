@@ -29,7 +29,9 @@ function loops_portfolio_shortcode() {
       $output .= '</div>';
       $output .= '</div>';
     }
-  } 
+  } else {
+    $output .= '<p class="text-center">' . __( 'Aucun collaborateur trouvé', 'loops' ) . '</p>';
+  }
   
   wp_reset_postdata();
   

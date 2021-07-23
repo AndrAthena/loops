@@ -3,13 +3,13 @@
 if( function_exists('acf_add_local_field_group') ):
 
 acf_add_local_field_group(array(
-	'key' => 'group_60f0777d989cc',
+	'key' => 'group_60f14759b1668',
 	'title' => 'Collaborateur',
 	'fields' => array(
 		array(
-			'key' => 'field_60f12e59238b2',
-			'label' => 'Poste',
-			'name' => 'poste',
+			'key' => 'field_60f1477037c0c',
+			'label' => 'Poste occupé',
+			'name' => 'poste_occupe',
 			'type' => 'text',
 			'instructions' => '',
 			'required' => 1,
@@ -20,13 +20,13 @@ acf_add_local_field_group(array(
 				'id' => '',
 			),
 			'default_value' => '',
-			'placeholder' => 'Votre poste',
+			'placeholder' => 'Poste occupé',
 			'prepend' => '',
 			'append' => '',
 			'maxlength' => '',
 		),
 		array(
-			'key' => 'field_60f07c6eb8e54',
+			'key' => 'field_60f147a9a0812',
 			'label' => 'Enseigne',
 			'name' => 'enseigne',
 			'type' => 'post_object',
@@ -44,7 +44,7 @@ acf_add_local_field_group(array(
 			'taxonomy' => '',
 			'allow_null' => 0,
 			'multiple' => 0,
-			'return_format' => 'object',
+			'return_format' => 'id',
 			'ui' => 1,
 		),
 	),
@@ -53,7 +53,7 @@ acf_add_local_field_group(array(
 			array(
 				'param' => 'post_type',
 				'operator' => '==',
-				'value' => 'equipe',
+				'value' => 'collaborateur',
 			),
 		),
 	),
@@ -71,6 +71,30 @@ acf_add_local_field_group(array(
 	'key' => 'group_60f131a456c76',
 	'title' => 'Enseigne',
 	'fields' => array(
+		array(
+			'key' => 'field_60f6b4a96e3df',
+			'label' => 'Logo',
+			'name' => 'logo',
+			'type' => 'image',
+			'instructions' => '',
+			'required' => 1,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'url',
+			'preview_size' => 'full',
+			'library' => 'all',
+			'min_width' => '',
+			'min_height' => '',
+			'min_size' => '',
+			'max_width' => '',
+			'max_height' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
 		array(
 			'key' => 'field_60f131a45de2d',
 			'label' => 'Information',
@@ -109,6 +133,21 @@ acf_add_local_field_group(array(
 			'append' => '',
 			'maxlength' => '',
 		),
+		array(
+			'key' => 'field_60f6b4d96e3e0',
+			'label' => 'Lien',
+			'name' => 'lien',
+			'type' => 'link',
+			'instructions' => '',
+			'required' => 1,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+		),
 	),
 	'location' => array(
 		array(
@@ -130,5 +169,3 @@ acf_add_local_field_group(array(
 ));
 
 endif;
-
-?>
