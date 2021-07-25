@@ -25,7 +25,13 @@ h6 {
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
+}
+
+@media (min-width: 1651px) {
+  h1 {
+    font-size: 2.5rem;
+  }
 }
 
 h2 {
@@ -613,6 +619,19 @@ article.post .post-content > * {
   opacity: 1;
   visibility: visible;
 }
+
+#portfolio .portfolio-blank {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 300px;
+  background-image: repeating-linear-gradient(90deg, var(--grey), var(--grey) 20%, #00000020 20%, #00000020 40%);
+}
+
+/*==========================================*
+ *          Shortcode : Recrutement         *
+ *==========================================*/
 
 /*==========================================*
  *          Page : Nos enseignes            *

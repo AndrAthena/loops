@@ -62,7 +62,15 @@ function loops_breadcrumb() {
       if ( get_post_type() != 'post' ) {
         $post_type = get_post_type_object(get_post_type());
         $slug = $post_type->rewrite;
-        echo '<a href="' . $homeLink . '/' . $slug['slug'] . '/">' . get_post_type() == 'enseigne' ? 'Nos enseignes' : $post_type->labels->singular_name . '</a>';
+        if( get_post_type() == 'enseigne' ) {
+          echo '<a href="' . $homeLink . '/' . $slug['slug'] . '/">Nos enseignes</a>';
+        }
+        if( get_post_type() == 'metier' ) {
+          echo '<a href="' . $homeLink . '/' . $slug['slug'] . '/">Quelles carrières chez nous ?</a>';
+        }
+        else {
+          echo '<a href="' . $homeLink . '/' . $slug['slug'] . '/">' . $post_type->singular_name . '</a>';
+        }
         if ($showCurrent == 1) echo ' ' . $delimiter . ' ' . $before . get_the_title() . $after;
       }
       else {

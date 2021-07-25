@@ -38,7 +38,7 @@
               <?php echo wp_trim_words( get_the_content(), 40 ) ?>
             </p>
           </div>
-          <a href="<?php the_permalink() ?>" class="btn text-primary text-uppercase font-weight-bold text-left px-0">Lire la suite ></a>
+          <a href="<?php the_permalink() ?>" class="btn text-primary text-uppercase font-weight-bold text-left px-0">Lire la suite</a>
         </div>
       </article>
 
