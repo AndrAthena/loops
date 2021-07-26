@@ -11,14 +11,9 @@
 <div>
   <?php
   
-  global $wp_query;
-
-
-  $page = get_queried_object();
-  
-  var_dump($wp_query);
-  $feature_image = wp_get_attachment_image_src( get_post_thumbnail_id( get_queried_object_id() ), 'full' );
-  $page_except = get_the_excerpt( get_queried_object_id() );
+  $page           = get_queried_object();
+  $feature_image  = wp_get_attachment_image_src( get_post_thumbnail_id( get_queried_object_id() ), 'full' );
+  $page_except    = get_the_excerpt( get_queried_object_id() );
 
   ?>
   <?php get_template_part( 'template-parts/content', 'breadcrumb' ) ?>
@@ -52,30 +47,30 @@
             <div class="col-md-4">
               <div class="form-inline mb-md-0">
                 <label for="metier"class="mb-0 mr-3 font-weight-bold">Métier</label>
-                <select class="form-select flex-grow-1" name="metier">
-                  <option selected>Tout</option>
+                <select class="form-select flex-grow-1" name="job">
+                  <option value="0">Tout</option>
                   <?php
                   $metier = new WP_Query( array( 'post_type' => 'metier' ) );
                   
                   if( $metier->have_posts() ): while( $metier->have_posts() ): $metier->the_post(); ?>
                   
-                  <option value="<?php the_permalink() ?>"><?php echo get_the_title(); ?></option>
-
+                  <option value="<?php the_ID() ?>" <?php echo get_query_var( 'job' ) == get_the_ID() ? 'selected' : '' ?>><?php echo get_the_title(); ?></option>
+                  
                   <?php endwhile; endif; wp_reset_postdata(); ?>
                 </select>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-inline mb-md-0">
-                <label for="metier"class="mb-0 mr-3 font-weight-bold">Magasin</label>
-                <select class="form-select flex-grow-1" name="enseigne">
-                  <option selected>Tout</option>
+                <label for="magasin"class="mb-0 mr-3 font-weight-bold">Magasin</label>
+                <select id="magasin" class="form-select flex-grow-1" name="shop">
+                  <option value="0">Tout</option>
                   <?php
                   $magasin = new WP_Query( array( 'post_type' => 'enseigne' ) );
                   
                   if( $magasin->have_posts() ): while( $magasin->have_posts() ): $magasin->the_post(); ?>
                   
-                  <option value="<?php the_permalink() ?>"><?php echo get_the_title(); ?></option>
+                  <option value="<?php the_ID() ?>" <?php echo get_query_var( 'shop' ) == get_the_ID() ? 'selected' : '' ?>><?php echo get_the_title(); ?></option>
 
                   <?php endwhile; endif; wp_reset_postdata(); ?>
                 </select>
@@ -83,21 +78,17 @@
             </div>
             <div class="col-md-4">
               <div class="form-inline mb-md-0">
-                <label for="metier"class="mb-0 mr-3 font-weight-bold">Ville</label>
-                <select class="form-select flex-grow-1" name="ville">
-                  <option selected>Toutes</option>
-                  <?php
-
-                  $villes = get_terms(array(
-                    'taxonomy'    => 'ville',
-                    'hide_empty'  => 0
-                  ));
-
-                  foreach($villes as $ville) : ?>
-
-                  <option value="<?php echo $ville->term_id ?>"><?php echo $ville->name ?></option>
-
-                  <?php endforeach ;?>
+                <label for="ville"class="mb-0 mr-3 font-weight-bold">Ville</label>
+                <select id="ville" class="form-select flex-grow-1" name="city">
+                  <option value="0">Toutes</option>
+                    <?php
+                    $villes = get_terms( array('taxonomy' => 'ville', 'hide_empty' => 0) );
+                    
+                    foreach($villes as $ville) : ?>
+                    
+                      <option value="<?php echo $ville->term_id ?>" <?php echo get_query_var('city') == $ville->term_id ? 'selected' : '' ?>><?php echo $ville->name ?></option>
+                    
+                    <?php endforeach ;?>
                 </select>
               </div>
             </div>
@@ -108,28 +99,65 @@
     <div class="py-5">
       <div class="container">
         <div class="row">
-          <?php
-          if( isset( $_GET['ville'] ) ) {
-            $ville_term = $_GET['ville'];
-            var_dump( $ville_term );
+          <?php        
+          $paged = get_query_var('paged') ? get_query_var('paged') : 1;
+          $args = array(
+            'post_type'       => 'recrutement',
+            'post_status'     => 'publish',
+            'posts_per_page'  => 9,
+            'paged'           => $paged
+          );
+          $meta_query = array();
+
+          /**
+           * Filter by job
+           */
+          if( isset( $_GET['job'] ) && $_GET['job'] ) {
+            $job = $_GET['job'];
+            $filter_by_job = array(
+              'key'    => 'metier',
+              'value'  => $job
+            );
+            $meta_query[] = $filter_by_job;
           }
 
-          $args = array(
-            'post_type'     => 'recrutement',
-            'post_stataus'  => 'publish',
-            // 'tax_query'     => array(
-            //   array(
-            //     'taxonomy'  => 'ville',
-            //     'field'     => 'name',
-            //     'terms'     => $ville_term
-            //   )
-            // )
-          );
+          /**
+           * Filter by shop
+           */
+          if( isset( $_GET['shop'] ) && $_GET['shop'] ) {
+            $shop = $_GET['shop'];
+            $filter_by_shop = array(
+              'key'    => 'enseigne',
+              'value'  => $shop
+            );
+            $meta_query[] = $filter_by_shop;
+          }
+
+          /**
+           * Filter by city
+           */
+          if( isset( $_GET['city'] ) && $_GET['city'] ) {
+            $term_city = $_GET['city'];
+            $filter_by_city = array(
+              'key'    => 'ville',
+              'value'  => $term_city
+            );           
+            $meta_query[] = $filter_by_city;
+          }
+
+          if( count( $meta_query ) ) {
+            $args['meta_query'] = $meta_query;
+          }
 
           $query = new WP_Query( $args );
 
-          if( $query->have_posts() ): while ( $query->have_posts() ): $query->the_post();
-          $enseigne = get_field( 'enseigne' );
+          if( $query->have_posts() ): while( $query->have_posts() ) :
+            $query->the_post();
+            $enseigne           = get_post( get_field( 'enseigne' ) );
+            $description        = get_post_field( 'description', $enseigne );
+            $logo_id            = get_post_field( 'logo', $enseigne );
+            $logo_url           = wp_get_attachment_url( $logo_id );
+            $ville              = get_term_by( 'term_id', get_field( 'ville' ), 'ville' );
           ?>
           <div class="col-md-4">
             <div class="card border-0">
@@ -138,10 +166,10 @@
                 <div class="ref"><span class="font-weight-bold">REF</span> • <?php the_field( 'reference' ) ?></div>
               </div>
               <div class="card-body rounded-0">
-                <div class="text-box">
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                </div>
-                <a href="<?php the_permalink() ?>" class="btn px-0">Postuler</a>
+                <img src="<?php echo $logo_url ?>" alt="<?php echo $enseigne->post_title ?>" class="mb-4">
+                <h3 class="mb-4 font-weight-normal"><?php echo $ville->name ?></h3>
+                <div class="text-box"><?php echo wp_trim_words( $description, 35 )  ?></div>
+                <a href="<?php the_permalink() ?>" title="<?php echo get_the_title() ?>" class="btn px-0">Postuler</a>
               </div>
             </div>
           </div>
@@ -149,21 +177,13 @@
         </div>
       </div>
     </div>
-  <?php
-  $args = array(
-    'post_type'       => 'recrutement',
-    'post_status'     => 'publish',
-    'posts_per_page'  => 9
-  );
-
-  $query = new WP_Query( $args );
-  if( $query->have_posts() ): while( $query->have_posts() ):
-    $query->the_post();
-  ?>  
-    <article <?php post_class() ?>>
-    </article>
-
-  <?php endwhile; endif; wp_reset_postdata(); ?>
+    <div class="bg-grey py-3">
+      <div class="container">
+        <div class="text-center">
+          <?php loops_pagination() ?>
+        </div>
+      </div>
+    </div>
   </section>
 </div>
 

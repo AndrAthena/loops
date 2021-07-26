@@ -891,3 +891,18 @@ article.post .post-content > * {
   appearance: none;
   background: url(assets/images/arrow_dropdown.svg) center right / 1.875rem no-repeat;
 }
+
+#recrutement .card-header .ref {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+#recrutement .card-header .card-title {
+  max-width: 70%;
+}
+
+#recrutement .text-box::after {
+  display: block;
+  margin-top: 2rem;
+}

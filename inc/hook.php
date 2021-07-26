@@ -143,3 +143,12 @@ function loops_pagination($class = '') {
     echo "</div>";
   } else return;
 }
+
+function loops_query_var($query) {
+  $query[] = "job";
+  $query[] = "shop";
+  $query[] = "city";
+  return $query;
+}
+
+add_filter( 'query_vars', 'loops_query_var' );

@@ -32,10 +32,12 @@
   
   <section id="metier" class="container-fluid">
   <?php
+  $paged = get_query_var('paged') ? get_query_var('paged') : 1;
   $args = array(
     'post_type'       => 'metier',
     'post_status'     => 'publish',
-    'posts_per_page'  => 5
+    'posts_per_page'  => 5,
+    'paged'           => $paged
   );
 
   $query = new WP_Query( $args );
@@ -65,10 +67,17 @@
     </article>
 
   <?php $i++; endwhile; endif; wp_reset_postdata(); ?>
-  <?php loops_pagination() ?>
+  
   </section>
+  <div class="bg-grey py-3">
+    <div class="container">
+      <div class="text-center">
+        <?php loops_pagination() ?>
+      </div>
+    </div>
+  </div>
   <section>
-    <?php echo do_shortcode( '[elementor-template id="392"]' ) ?>
+        <?php echo do_shortcode( '[elementor-template id="392"]' ) ?>
   </section>
 </div>
 
