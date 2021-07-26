@@ -47,7 +47,7 @@ function loops_liste_recrutement() {
   $output = '';
   $output .= '<div class="bg-grey py-4">';
   $output .= '<div class="container">';
-  $output .= '<form id="filtre-recrutement" action="the_permalink()" method="GET">';
+  $output .= '<form id="filtre-recrutement" action="" method="GET">';
   $output .= '<div class="row">';
   $output .= '<div class="col-md-4">';
   $output .= '<div class="form-inline mb-md-0">';
@@ -57,7 +57,7 @@ function loops_liste_recrutement() {
 
   $metier = new WP_Query( array( 'post_type' => 'metier' ) );
   if( $metier->have_posts() ): while( $metier->have_posts() ): $metier->the_post();         
-    $output .= '<option value="' . the_ID() . '" ' . get_query_var( "job" ) == get_the_ID() ? "selected" : "" . '>' . get_the_title() . '</option>';
+    $output .= '<option value="' . get_the_ID() . '" ' . ( get_query_var( "job" ) == get_the_ID() ? "selected" : "" ) . '>' . get_the_title() . '</option>';
   endwhile; endif; wp_reset_postdata();
 
   $output .= '</select>';
@@ -71,7 +71,7 @@ function loops_liste_recrutement() {
 
   $magasin = new WP_Query( array( 'post_type' => 'enseigne' ) );
   if( $magasin->have_posts() ): while( $magasin->have_posts() ): $magasin->the_post();
-    $output .= '<option value="' . the_ID() . '" ' . get_query_var( "shop" ) == get_the_ID() ? "selected" : "" . '>' . get_the_title() . '</option>';
+    $output .= '<option value="' . get_the_ID() . '" ' . ( get_query_var( "shop" ) == get_the_ID() ? "selected" : "" ) . '>' . get_the_title() . '</option>';
   endwhile; endif; wp_reset_postdata();
 
   $output .= '</select>';
@@ -86,7 +86,7 @@ function loops_liste_recrutement() {
   $villes = get_terms( array('taxonomy' => 'ville', 'hide_empty' => 0) );
       
   foreach($villes as $ville) :
-  $output .= '<option value="' . $ville->term_id . '" ' . get_query_var('city') == $ville->term_id ? "selected" : "" . '>' . $ville->name . '</option>';
+  $output .= '<option value="' . $ville->term_id . '" ' . ( get_query_var('city') == $ville->term_id ? "selected" : "" ) . '>' . $ville->name . '</option>';
   endforeach ;
 
   $output .= '</select>';
@@ -154,29 +154,35 @@ function loops_liste_recrutement() {
 
   $query = new WP_Query( $args );
 
-  if( $query->have_posts() ): while( $query->have_posts() ) :
-    $query->the_post();
-    $enseigne = get_post( get_field( 'enseigne' ) );
-    $description= get_post_field( 'description', $enseigne );
-    $logo_id= get_post_field( 'logo', $enseigne );
-    $logo_url = wp_get_attachment_url( $logo_id );
-    $ville= get_term_by( 'term_id', get_field( 'ville' ), 'ville' );
+  if( $query->have_posts() ) {
+    while( $query->have_posts() ) {
+      $query->the_post();
+      $enseigne = get_post( get_field( 'enseigne' ) );
+      $description= get_post_field( 'description', $enseigne );
+      $logo_id= get_post_field( 'logo', $enseigne );
+      $logo_url = wp_get_attachment_url( $logo_id );
+      $ville= get_term_by( 'term_id', get_field( 'ville' ), 'ville' );
 
-    $output .= '<div class="col-md-4">';
-    $output .= '<div class="card border-0">';
-    $output .= '<div class="card-header bg-primary text-white rounded-0">';
-    $output .= '<h3 class="card-title mb-0">' . get_the_title() . '</h3>';
-    $output .= '<div class="ref"><span class="font-weight-bold">REF</span> • ' .  the_field( 'reference' ) . '</div>';
-    $output .= '</div>';
-    $output .= '<div class="card-body rounded-0">';
-    $output .= '<img src="' . $logo_url . '" alt="' . $enseigne->post_title . '" ' . 'class="mb-4">';
-    $output .= '<h3 class="mb-4 font-weight-normal">' . $ville->name . '</h3>';
-    $output .= '<div class="text-box">' . wp_trim_words( $description, 35 ) . '</div>';
-    $output .= '<a href="' . the_permalink() . '" title="' . get_the_title() . '" class="btn px-0">Postuler</a>';
-    $output .= '</div>';
-    $output .= '</div>';
-    $output .= '</div>';
-  endwhile; endif; wp_reset_postdata(); 
+      $output .= '<div class="col-md-4">';
+      $output .= '<div class="card border-0">';
+      $output .= '<div class="card-header bg-primary text-white rounded-0">';
+      $output .= '<h3 class="card-title mb-0">' . get_the_title() . '</h3>';
+      $output .= '<div class="ref"><span class="font-weight-bold">REF</span> • ' .  get_field( 'reference' ) . '</div>';
+      $output .= '</div>';
+      $output .= '<div class="card-body rounded-0">';
+      $output .= '<img src="' . $logo_url . '" alt="' . $enseigne->post_title . '" ' . 'class="mb-4">';
+      $output .= '<h3 class="mb-4 font-weight-normal">' . $ville->name . '</h3>';
+      $output .= '<div class="text-box">' . wp_trim_words( $description, 35 ) . '</div>';
+      $output .= '<a href="' . get_the_permalink() . '" title="' . get_the_title() . '" class="btn px-0">Postuler</a>';
+      $output .= '</div>';
+      $output .= '</div>';
+      $output .= '</div>';
+    }
+  } else {
+    $output .= '<p class="w-100 p-2 text-center">' . __( 'Aucun résultat à afficher.', 'loops' ) . '</p>';
+  }
+  
+  wp_reset_postdata();
 
   $output .= '</div>';
   $output .= '</div>';
