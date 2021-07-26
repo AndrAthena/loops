@@ -85,6 +85,10 @@ p {
   color: var(--primary) !important;
 }
 
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
 .bg-grey {
   background-color: #f4f4f4;
 }
@@ -467,6 +471,12 @@ footer .footer-bottom .border-right {
  *           Home: Hero slider              *
  *==========================================*/
 
+#banner-archive h1,
+#banner h1 {
+  line-height: 3.5rem;
+}
+
+#banner-archive h1 span,
 #banner h1 span,
 #hero-slide .elementor-slide-heading span {
   padding: 0rem 1rem 0.25rem;
@@ -634,17 +644,250 @@ article.post .post-content > * {
  *==========================================*/
 
 /*==========================================*
+ *              Page : Cpt List             *
+ *==========================================*/
+
+#banner-archive {
+  overflow: hidden;
+}
+
+#banner-archive [class^='col-'] {
+  height: 400px;
+}
+
+@media (min-width: 1025px) {
+  #banner-archive [class^='col-'] {
+    height: 650px;
+  }
+}
+
+#banner-archive [class^='col'] {
+  padding-bottom: 5rem;
+}
+
+#banner-archive.metier .liste-type {
+  margin-bottom: -1rem;
+}
+
+#banner-archive .text-right::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  display: block;
+  background-color: #fff;
+}
+
+#banner-archive .liste-type {
+  margin-bottom: 0;
+  padding: 1rem;
+  list-style: none;
+  display: inline-flex;
+  justify-content: flex-end;
+  background-color: #fff;
+}
+
+#banner-archive .liste-type li {
+  position: relative;
+  max-width: 220px;
+  padding: 0 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+#banner-archive .liste-type li:not(:last-of-type)::after {
+  content: '';
+  width: 1px;
+  height: 1rem;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 4px;
+  border-right: 2px solid #000;
+}
+
+/*==========================================*
  *          Page : Nos enseignes            *
  *==========================================*/
 
 #nos-enseignes article {
-  margin-top: 80px;
+  height: auto;
+  margin: 80px 0;
 }
 
-#nos-enseignes article img {
-  max-height: 950px;
+#nos-enseignes article .overlay {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+#nos-enseignes article .overlay img {
+  max-width: 100%;
+  width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+#nos-enseignes .col {
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+}
+
+#nos-enseignes .description {
+  margin-top: auto;
+}
+
+#nos-enseignes .information {
+  width: 100%;
+  margin-top: auto;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-bottom: 2rem;
+  background-color: #fff;
 }
 
 #nos-enseignes .text-pad {
-  padding: 5rem;
+  padding: 2rem;
+}
+
+@media (min-width: 768px) {
+  #nos-enseignes .description {
+    margin-bottom: -5rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  #nos-enseignes .col {
+    flex: 0 0 50%;
+    max-width: 50%;
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  #nos-enseignes article {
+    height: 650px;
+  }
+
+  #nos-enseignes .row {
+    height: 100%;
+  }
+}
+
+@media (min-width: 1025px) {
+  #nos-enseignes .col:first-of-type {
+    flex: 0 0 41.667%;
+    max-width: 41.667%;
+  }
+
+  #nos-enseignes .col:last-of-type {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    background-color: #fff;
+  }
+
+  #nos-enseignes .information {
+    padding-left: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  #nos-enseignes .text-pad {
+    padding: 4rem;
+  }
+}
+
+@media (min-width: 1281px) {
+  #nos-enseignes article {
+    min-height: 1050px;
+  }
+
+  #nos-enseignes .text-pad {
+    padding: 5rem;
+  }
+}
+
+/*==========================================*
+ *              Page : Métiers              *
+ *==========================================*/
+
+#metier {
+  margin-top: 100px;
+}
+
+#metier article {
+  margin-bottom: 100px;
+}
+
+#metier article [class^='text-'] {
+  max-height: 650px;
+  overflow-y: hidden;
+}
+
+@media (min-width: 1281px) {
+  #metier article [class^='text-'] {
+    max-height: 850px;
+  }
+}
+
+#metier article .text-left {
+  margin-left: -15px;
+}
+
+#metier article .text-right {
+  margin-right: -15px;
+}
+
+#metier .information {
+  position: absolute;
+  bottom: -1px;
+  right: 0;
+}
+
+#metier .info-metier {
+  padding-top: 4rem;
+}
+
+@media (min-width: 1281px) {
+  #metier .info-metier {
+    width: 50%;
+    padding-top: 6.25rem;
+  }
+}
+
+#metier .text-position-left .info-metier {
+  margin-left: 8.33%;
+  margin-right: 2rem;
+}
+
+#metier .text-position-right .info-metier {
+  margin-left: 2rem;
+  margin-right: 8.33%;
+}
+
+@media (min-width: 1281px) {
+  #metier .text-position-left .info-metier {
+    margin-left: 8.33%;
+  }
+
+  #metier .text-position-right .info-metier {
+    margin-right: 8.33%;
+  }
+}
+
+/*==========================================*
+ *            Page : Recrutement            *
+ *==========================================*/
+
+#recrutement select {
+  position: relative;
+  height: 40px;
+  padding-left: 1rem;
+  padding-right: 2rem;
+  border-radius: 0;
+  border-color: var(--primary);
+  -webkit-appearance: none;
+  appearance: none;
+  background: url(assets/images/arrow_dropdown.svg) center right / 1.875rem no-repeat;
 }

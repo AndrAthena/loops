@@ -22,7 +22,7 @@ function loops_register_custom_post_type() {
     'description' => __( '', 'loops' ),
     'labels' => $labels_collab,
     'menu_icon' => 'dashicons-groups',
-    'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'post-formats', 'custom-fields'),
+    'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'post-formats', 'custom-fields', 'page-attributes'),
     'public' => true,
     'show_ui' => true,
     'show_in_menu' => true,
@@ -60,7 +60,7 @@ function loops_register_custom_post_type() {
     'description' => __( '', 'loops' ),
     'labels' => $labels_enseigne,
     'menu_icon' => 'dashicons-admin-site-alt3',
-    'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'post-formats', 'custom-fields'),
+    'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'post-formats', 'custom-fields', 'page-attributes'),
     'public' => true,
     'show_ui' => true,
     'show_in_menu' => true,
@@ -68,13 +68,14 @@ function loops_register_custom_post_type() {
     'show_in_admin_bar' => true,
     'show_in_nav_menus' => true,
     'can_export' => true,
-    'has_archive' => true,
+    'has_archive' => false,
     'hierarchical' => false,
     'exclude_from_search' => false,
     'show_in_rest' => true,
     'publicly_queryable' => true,
     'capability_type' => 'post',
-    'rewrite' => array( 'slug' => 'nos-enseignes' )
+    'rewrite' => array( 'slug' => 'nos-enseignes' ),
+    'taxonomies'  => array('ville')
   );
   register_post_type( 'enseigne', $args_enseigne );
   
@@ -99,7 +100,7 @@ function loops_register_custom_post_type() {
     'labels' => $labels_metier,
     'description' => __( '', 'loops' ),
     'menu_icon' => 'dashicons-businesswoman',
-    'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'post-formats', 'custom-fields'),
+    'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'post-formats', 'custom-fields', 'page-attributes'),
     'public' => true,
     'show_ui' => true,
     'show_in_menu' => true,
@@ -116,8 +117,68 @@ function loops_register_custom_post_type() {
     'rewrite' => array( 'slug' => 'quelles-carrieres-chez-nous' )
   );
   register_post_type( 'metier', $args_metier );
+
+  $labels_recrutement = array(
+    'name' => __( 'Recrutement', 'loops' ),
+    'singular_name' => __( 'Recrutement', 'loops' ),
+    'menu_name' => __( 'Recrutement', 'loops' ),
+    'name_admin_bar' => __( 'Recrutement', 'loops' ),
+    'all_items' => __( 'Tous les recrutements', 'loops' ),
+    'add_new_item' => __( 'Ajouter nouveau recrutement', 'loops' ),
+    'add_new' => __( 'Ajouter', 'loops' ),
+    'new_item' => __( 'Nouveau recrutement', 'loops' ),
+    'edit_item' => __( 'Modifier recrutement', 'loops' ),
+    'view_item' => __( 'Voir recrutement', 'loops' ),
+    'view_items' => __( 'Voir recrutements', 'loops' ),
+    'search_items' => __( 'Rechercher dans les recrutements', 'loops' ),
+    'not_found' => __( 'Aucun recrutement trouvé.', 'loops' ),
+    'not_found_in_trash' => __( 'Aucun recrutement trouvé dans la corbeille.', 'loops' ),
+    );
+  $args_recrutement = array(
+    'label' => __( 'Recrutement', 'loops' ),
+    'labels' => $labels_recrutement,
+    'description' => __( '', 'loops' ),
+    'menu_icon' => 'dashicons-businesswoman',
+    'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'post-formats', 'custom-fields', 'page-attributes'),
+    'public' => true,
+    'show_ui' => true,
+    'show_in_menu' => true,
+    'menu_position' => 5,
+    'show_in_admin_bar' => true,
+    'show_in_nav_menus' => true,
+    'can_export' => true,
+    'has_archive' => true,
+    'hierarchical' => false,
+    'exclude_from_search' => false,
+    'show_in_rest' => true,
+    'publicly_queryable' => true,
+    'capability_type' => 'post',
+    'rewrite' => array( 'slug' => 'recrutement' ),
+  );
+  register_post_type( 'recrutement', $args_recrutement );
 }
 
-add_action( 'init', 'loops_register_custom_post_type' );
+function loops_register_taxonomy() {
+  $args = array(
+    'labels'            => array(
+      'name'            => __('Villes', 'loops'),
+      'singular_name'   => __('Ville', 'loops'),
+      'search_items'    => __('Villes', 'loops'),
+    ),
+    'public'            => true,
+    'show_ui'           => true,
+    'show_in_rest'      => true,
+    'show_in_menu'      => true,
+    'show_admin_column' => true
+  );
+  register_taxonomy( 'ville', 'enseigne', $args );
+}
+
+function init_hook() {
+  loops_register_custom_post_type();
+  loops_register_taxonomy();
+}
+
+add_action( 'init', 'init_hook' );
 
 ?>

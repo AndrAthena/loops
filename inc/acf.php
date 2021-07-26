@@ -98,6 +98,25 @@ acf_add_local_field_group(array(
 			'mime_types' => '',
 		),
 		array(
+			'key' => 'field_description',
+			'label' => 'Description',
+			'name' => 'description',
+			'type' => 'wysiwyg',
+			'instructions' => '',
+			'required' => 1,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'tabs' => 'all',
+			'toolbar' => 'full',
+			'media_upload' => 1,
+			'delay' => 0,
+		),
+		array(
 			'key' => 'field_60f131a45de2d',
 			'label' => 'Information',
 			'name' => 'information',
@@ -150,25 +169,6 @@ acf_add_local_field_group(array(
 			),
 			'return_format' => 'array',
 		),
-		array(
-			'key' => 'field_ville',
-			'label' => 'Ville',
-			'name' => 'ville',
-			'type' => 'text',
-			'instructions' => '',
-			'required' => 1,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'default_value' => '',
-			'placeholder' => 'Ville',
-			'prepend' => '',
-			'append' => '',
-			'maxlength' => '',
-		),
 	),
 	'location' => array(
 		array(
@@ -191,11 +191,30 @@ acf_add_local_field_group(array(
 
 /** Metier */
 acf_add_local_field_group(array(
-	'key' => 'group_60fc05c69620f',
+	'key' => 'group_metier',
 	'title' => 'Métier',
 	'fields' => array(
 		array(
-			'key' => 'field_60fc05d19fb50',
+			'key' => 'field_description',
+			'label' => 'Description',
+			'name' => 'description',
+			'type' => 'wysiwyg',
+			'instructions' => '',
+			'required' => 1,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'tabs' => 'all',
+			'toolbar' => 'full',
+			'media_upload' => 1,
+			'delay' => 0,
+		),
+		array(
+			'key' => 'field_profil',
 			'label' => 'Profil',
 			'name' => 'profil',
 			'type' => 'wysiwyg',
@@ -214,7 +233,7 @@ acf_add_local_field_group(array(
 			'delay' => 0,
 		),
 		array(
-			'key' => 'field_60fc2a4386434',
+			'key' => 'field_photo_profil',
 			'label' => 'Photo profil',
 			'name' => 'photo_profil',
 			'type' => 'image',
@@ -238,7 +257,7 @@ acf_add_local_field_group(array(
 			'mime_types' => '',
 		),
 		array(
-			'key' => 'field_60fc06059fb51',
+			'key' => 'field_mission',
 			'label' => 'Mission',
 			'name' => 'mission',
 			'type' => 'wysiwyg',
@@ -257,7 +276,7 @@ acf_add_local_field_group(array(
 			'delay' => 0,
 		),
 		array(
-			'key' => 'field_60fc2a5c86435',
+			'key' => 'field_photo_mission',
 			'label' => 'Photo Mission',
 			'name' => 'photo_mission',
 			'type' => 'image',
@@ -281,7 +300,7 @@ acf_add_local_field_group(array(
 			'mime_types' => '',
 		),
 		array(
-			'key' => 'field_60fc064a9fb53',
+			'key' => 'field_video_temoignage',
 			'label' => 'Vidéo Témoignage',
 			'name' => 'video_temoignage',
 			'type' => 'oembed',
@@ -297,7 +316,7 @@ acf_add_local_field_group(array(
 			'height' => '',
 		),
 		array(
-			'key' => 'field_60fc06659fb54',
+			'key' => 'field_temoignage_de',
 			'label' => 'Témoignage de',
 			'name' => 'temoignage_de',
 			'type' => 'post_object',

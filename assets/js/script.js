@@ -4,4 +4,7 @@
     if (window.scrollY > 100) header.addClass('scrolled');
     else header.removeClass('scrolled');
   });
+  $('#filtre-recrutement').on('change', function () {
+    $(this).submit();
+  });
 })(jQuery);

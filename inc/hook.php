@@ -65,7 +65,7 @@ function loops_breadcrumb() {
         if( get_post_type() == 'enseigne' ) {
           echo '<a href="' . $homeLink . '/' . $slug['slug'] . '/">Nos enseignes</a>';
         }
-        if( get_post_type() == 'metier' ) {
+        elseif( get_post_type() == 'metier' ) {
           echo '<a href="' . $homeLink . '/' . $slug['slug'] . '/">Quelles carrières chez nous ?</a>';
         }
         else {
