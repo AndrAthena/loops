@@ -11,8 +11,8 @@
   <?php
   
   $page = get_queried_object();
-  $feature_image = wp_get_attachment_image_src( get_post_thumbnail_id( $page->ID ), 'full' );
-  $page_except = get_the_excerpt( $page->ID );
+  $feature_image = wp_get_attachment_image_src( get_post_thumbnail_id( get_queried_object_id() ), 'full' );
+  $page_except = get_the_excerpt( get_queried_object() );
 
   ?>
 

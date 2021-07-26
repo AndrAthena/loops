@@ -11,9 +11,14 @@
 <div>
   <?php
   
+  global $wp_query;
+
+
   $page = get_queried_object();
-  $feature_image = wp_get_attachment_image_src( get_post_thumbnail_id( $page->ID ), 'full' );
-  $page_except = get_the_excerpt( $page->ID );
+  
+  var_dump($wp_query);
+  $feature_image = wp_get_attachment_image_src( get_post_thumbnail_id( get_queried_object_id() ), 'full' );
+  $page_except = get_the_excerpt( get_queried_object_id() );
 
   ?>
   <?php get_template_part( 'template-parts/content', 'breadcrumb' ) ?>
@@ -54,7 +59,7 @@
                   
                   if( $metier->have_posts() ): while( $metier->have_posts() ): $metier->the_post(); ?>
                   
-                  <option value="<?php echo "metier-" . get_the_ID() ?>"><?php echo get_the_title(); ?></option>
+                  <option value="<?php the_permalink() ?>"><?php echo get_the_title(); ?></option>
 
                   <?php endwhile; endif; wp_reset_postdata(); ?>
                 </select>
@@ -70,7 +75,7 @@
                   
                   if( $magasin->have_posts() ): while( $magasin->have_posts() ): $magasin->the_post(); ?>
                   
-                  <option value="<?php echo "magasin-" . get_the_ID() ?>"><?php echo get_the_title(); ?></option>
+                  <option value="<?php the_permalink() ?>"><?php echo get_the_title(); ?></option>
 
                   <?php endwhile; endif; wp_reset_postdata(); ?>
                 </select>
