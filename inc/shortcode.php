@@ -97,11 +97,9 @@ function loops_liste_recrutement() {
   $output .= '</div>';
   $output .= '</div>';
 
-
-
-  $output .= '<div class="py-5">';
-  $output .= '<div class="container">';
-  $output .= '<div class="row">';
+  $output .= '<div id="recrutement" class="py-5">';
+  $output .= '  <div class="container">';
+  $output .= '    <div id="recrutement-result" class="row">';
 
   $paged = get_query_var('paged') ? get_query_var('paged') : 1;
   $args = array(
@@ -110,47 +108,6 @@ function loops_liste_recrutement() {
     'posts_per_page'  => 9,
     'paged'           => $paged
   );
-  $meta_query = array();
-
-  /**
-   * Filter by job
-   */
-  if( isset( $_GET['job'] ) && $_GET['job'] ) {
-    $job = $_GET['job'];
-    $filter_by_job = array(
-      'key'     => 'metier',
-      'value'   => $job
-    );
-    $meta_query[] = $filter_by_job;
-  }
-
-  /**
-   * Filter by shop
-   */
-  if( isset( $_GET['shop'] ) && $_GET['shop'] ) {
-    $shop = $_GET['shop'];
-    $filter_by_shop = array(
-      'key'     => 'enseigne',
-      'value'   => $shop
-    );
-    $meta_query[] = $filter_by_shop;
-  }
-
-  /**
-   * Filter by city
-   */
-  if( isset( $_GET['city'] ) && $_GET['city'] ) {
-    $term_city = $_GET['city'];
-    $filter_by_city = array(
-      'key'     => 'ville',
-      'value'   => $term_city
-    ); 
-    $meta_query[] = $filter_by_city;
-  }
-
-  if( count( $meta_query ) ) {
-    $args['meta_query'] = $meta_query;
-  }
 
   $query = new WP_Query( $args );
 
@@ -184,9 +141,11 @@ function loops_liste_recrutement() {
   
   wp_reset_postdata();
 
+  $output .= '    </div>';
+  $output .= '  </div>';
   $output .= '</div>';
-  $output .= '</div>';
-  $output .= '</div>';
+
+  $output .= loops_pagination( 'justify-content-center mt-0' );
 
   return $output;
 }

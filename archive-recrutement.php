@@ -41,13 +41,6 @@
       </div>
     </div>
     <?php echo do_shortcode( '[loops_recrutement]' ) ?>
-    <div class="bg-grey py-3">
-      <div class="container">
-        <div class="text-center">
-          <?php loops_pagination() ?>
-        </div>
-      </div>
-    </div>
   </section>
 </div>
 

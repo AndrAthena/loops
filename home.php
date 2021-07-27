@@ -45,9 +45,7 @@
       <?php $count++; endwhile; endif; wp_reset_query() ?>
 
     </div>
-    <div class="py-4 bg-grey border-bottom">
-      <?php loops_pagination( 'justify-content-center mt-0' ) ?>
-    </div>
+    <?php loops_pagination( 'justify-content-center mt-0' ) ?>
 </section>
 
 

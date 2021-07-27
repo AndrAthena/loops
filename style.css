@@ -708,6 +708,23 @@ article.post .post-content > * {
   border-right: 2px solid #000;
 }
 
+#banner-archive .text-box::after {
+  display: block;
+  margin: 3rem auto 0;
+  border-color: white;
+}
+
+#banner-archive.recrutement h1::after {
+  content: '';
+  margin-top: 2rem;
+  width: 50%;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  border-top: 1px solid #fff;
+}
+
 /*==========================================*
  *          Page : Nos enseignes            *
  *==========================================*/

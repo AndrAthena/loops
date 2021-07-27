@@ -58,7 +58,7 @@ function loops_breadcrumb() {
     } elseif ( is_year() ) {
       echo $before . get_the_time('Y') . $after;
  
-    } elseif ( is_single() && !is_attachment() ) {
+    } elseif ( is_single() || is_singular() && !is_attachment() ) {
       if ( get_post_type() != 'post' ) {
         $post_type = get_post_type_object(get_post_type());
         $slug = $post_type->rewrite;
@@ -69,7 +69,7 @@ function loops_breadcrumb() {
           echo '<a href="' . $homeLink . '/' . $slug['slug'] . '/">Quelles carrières chez nous ?</a>';
         }
         else {
-          echo '<a href="' . $homeLink . '/' . $slug['slug'] . '/">' . $post_type->singular_name . '</a>';
+          echo '<a href="' . $homeLink . '/' . $slug['slug'] . '/">' . $post_type->labels->singular_name . '</a>';
         }
         if ($showCurrent == 1) echo ' ' . $delimiter . ' ' . $before . get_the_title() . $after;
       }
@@ -133,6 +133,7 @@ function loops_pagination($class = '') {
     )
   );
   if($pages != NULL) {
+    echo '<div class="py-4 bg-grey border-bottom">';
     echo '<div class="pagination ' . $class . '">';
     foreach ($pages as $page) {
       $active = strpos($page, 'current') ? " active" : "";
@@ -140,6 +141,7 @@ function loops_pagination($class = '') {
       echo str_replace( 'page-numbers', 'page-link', $page );
       echo "</li>";
     }
+    echo "</div>";
     echo "</div>";
   } else return;
 }
@@ -152,3 +154,92 @@ function loops_query_var($query) {
 }
 
 add_filter( 'query_vars', 'loops_query_var' );
+
+function loops_ajax_recrutement() {
+  $paged = get_query_var('paged') ? get_query_var('paged') : 1;
+  $args = array(
+    'post_type'       => 'recrutement',
+    'post_status'     => 'publish',
+    'posts_per_page'  => 9,
+    'paged'           => $paged
+  );
+  
+  $meta_query = array();
+  
+  if( isset( $_POST['filter'] ) && !is_null( $_POST['filter'] ) ) {
+    extract( $_POST['filter'] );
+    /**
+     * Filter by job
+    */
+    if( $job ) {
+      $filter_by_job = array(
+        'key'     => 'metier',
+        'value'   => $job
+      );
+      $meta_query[] = $filter_by_job;
+    }
+
+    /**
+     * Filter by shop
+     */
+    if( $shop ) {
+      $filter_by_shop = array(
+        'key'     => 'enseigne',
+        'value'   => $shop
+      );
+      $meta_query[] = $filter_by_shop;
+    }
+
+    /**
+     * Filter by city
+     */
+    if( $city ) {
+      $filter_by_city = array(
+        'key'     => 'ville',
+        'value'   => $city
+      ); 
+      $meta_query[] = $filter_by_city;
+    }
+
+    if( count( $meta_query ) ) {
+      $args['meta_query'] = $meta_query;
+    }
+
+    $query = new WP_Query( $args );
+
+    if( $query->have_posts() ) {
+      while( $query->have_posts() ) {
+        $query->the_post();
+        $enseigne = get_post( get_field( 'enseigne' ) );
+        $description= get_post_field( 'description', $enseigne );
+        $logo_id= get_post_field( 'logo', $enseigne );
+        $logo_url = wp_get_attachment_url( $logo_id );
+        $ville= get_term_by( 'term_id', get_field( 'ville' ), 'ville' );
+
+        $output .= '<div class="col-md-4">';
+        $output .= '<div class="card border-0">';
+        $output .= '<div class="card-header bg-primary text-white rounded-0">';
+        $output .= '<h3 class="card-title mb-0">' . get_the_title() . '</h3>';
+        $output .= '<div class="ref"><span class="font-weight-bold">REF</span> • ' .  get_field( 'reference' ) . '</div>';
+        $output .= '</div>';
+        $output .= '<div class="card-body rounded-0">';
+        $output .= '<img src="' . $logo_url . '" alt="' . $enseigne->post_title . '" ' . 'class="mb-4">';
+        $output .= '<h3 class="mb-4 font-weight-normal">' . $ville->name . '</h3>';
+        $output .= '<div class="text-box">' . wp_trim_words( $description, 35 ) . '</div>';
+        $output .= '<a href="' . get_the_permalink() . '" title="' . get_the_title() . '" class="btn px-0">Postuler</a>';
+        $output .= '</div>';
+        $output .= '</div>';
+        $output .= '</div>';
+      }
+    } else {
+      $output .= '<p class="w-100 p-2 text-center">' . __( 'Aucun résultat à afficher.', 'loops' ) . '</p>';
+    }
+  }
+
+  echo $output;
+
+  wp_die();
+}
+
+add_action( 'wp_ajax_load_list_recrutement', 'loops_ajax_recrutement' );
+add_action( 'wp_ajax_nopriv_load_list_recrutement', 'loops_ajax_recrutement' );
