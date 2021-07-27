@@ -897,7 +897,7 @@ article.post .post-content > * {
  *            Page : Recrutement            *
  *==========================================*/
 
-#recrutement select {
+#recrutement-filter select {
   position: relative;
   height: 40px;
   padding-left: 1rem;
@@ -909,17 +909,129 @@ article.post .post-content > * {
   background: url(assets/images/arrow_dropdown.svg) center right / 1.875rem no-repeat;
 }
 
+@media (max-width: 991px) {
+  #recrutement-filter .form-inline {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  #recrutement-filter .form-inline label {
+    margin-bottom: 0.5rem !important;
+  }
+
+  #recrutement-filter .form-inline select {
+    width: 100%;
+  }
+}
+
+#recrutement .card {
+  height: 100%;
+}
+
+#recrutement .card-header {
+  display: flex;
+  flex: 1;
+  min-height: 80px;
+}
+
 #recrutement .card-header .ref {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+  margin-left: auto;
 }
 
 #recrutement .card-header .card-title {
   max-width: 70%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
-#recrutement .text-box::after {
+#recrutement .text-box::after,
+#recrutement-single .text-box::after {
   display: block;
   margin-top: 2rem;
+}
+
+/*==========================================*
+ *       Page : Signel Recrutement          *
+ *==========================================*/
+
+#profil {
+  background-color: var(--grey);
+}
+
+#mission {
+  background-color: var(--primary);
+}
+
+#profil,
+#mission {
+  margin-bottom: 4rem;
+  padding: 4rem 0;
+}
+
+@media (min-width: 1281px) {
+  #profil .text {
+    padding-right: 8rem;
+  }
+
+  #mission .text {
+    padding-left: 8rem;
+  }
+}
+
+#profil .img-cover,
+#mission .img-cover {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  #profil,
+  #mission {
+    margin-bottom: 10rem;
+    padding: 8rem 0;
+  }
+
+  #profil .text {
+    padding-right: 5rem;
+  }
+
+  #mission .text {
+    padding-left: 5rem;
+  }
+
+  #profil {
+    background: linear-gradient(90deg, var(--grey) 80%, #fff 80%);
+  }
+
+  #mission {
+    background: linear-gradient(90deg, #fff 20%, var(--primary) 20%);
+  }
+
+  #profil .img-cover,
+  #mission .img-cover {
+    position: absolute;
+    top: 5rem;
+    max-width: 50%;
+    max-height: 700px;
+  }
+}
+
+@media (min-width: 992px) {
+  #profil .img-cover,
+  #mission .img-cover {
+    max-width: 60%;
+  }
+}
+
+#profil .img-cover {
+  right: 0;
+}
+
+#mission .img-cover {
+  left: 0;
+}
+
+#mission .text {
+  color: #fff;
 }

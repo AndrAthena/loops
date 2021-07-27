@@ -216,7 +216,7 @@ function loops_ajax_recrutement() {
         $logo_url = wp_get_attachment_url( $logo_id );
         $ville= get_term_by( 'term_id', get_field( 'ville' ), 'ville' );
 
-        $output .= '<div class="col-md-4">';
+        $output .= '<div class="col-md-6 col-lg-4">';
         $output .= '<div class="card border-0">';
         $output .= '<div class="card-header bg-primary text-white rounded-0">';
         $output .= '<h3 class="card-title mb-0">' . get_the_title() . '</h3>';
