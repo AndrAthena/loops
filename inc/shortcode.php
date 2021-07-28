@@ -13,7 +13,7 @@ function loops_portfolio_shortcode() {
   $query = new WP_Query( $args );
   
   $output = '<section id="portfolio">';
-  $output .= '<div class="row">';
+  $output .= '<div class="row mx-0">';
 
   if( $query->have_posts() ) {
     while( $query->have_posts() ) {
@@ -214,6 +214,14 @@ function loops_related_recrutement() {
   $output .= '</div>';
 
   $output .= loops_pagination( 'justify-content-center mt-0' );
+
+  $output .= '<div class="bg-grey py-3">';
+  $output .= '<div class="container">';
+  $output .= '<div class="text-center">';
+  loops_pagination();
+  $output .= '</div>';
+  $output .= '</div>';
+  $output .= '</div>';
 
   return $output;
 }

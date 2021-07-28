@@ -61,12 +61,16 @@
             <div class="text-box">
               <?php echo $description ?>
             </div>
-            <a href="<?php echo esc_url( $lien['url'] ) ?>" class="btn px-0"><?php echo $lien['title'] ?></a>
+            <a href="<?php the_permalink() ?>" class="btn px-0"><?php echo $lien['title'] ?></a>
           </div>
         </div>
         <div class="col <?php echo !($i % 2) ? 'ml-lg-auto' : 'mr-lg-auto' ?> d-flex flex-column mb-lg-0">
           <div class="information">
-            <?php the_title('<h2 class="mb-4">', ' ></h2>') ?>
+            <h2 class="mb-4">
+              <a href="<?php echo esc_url( $lien['url'] ) ?>" class="text-body">
+                <?php echo get_the_title() ?> >
+              </a>
+            </h2>
             <?php echo $information ?>
           </div>
         </div>

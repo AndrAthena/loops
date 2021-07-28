@@ -11,13 +11,15 @@
   );
   $query = new WP_Query( $args );
 
-  if( $query->have_posts() ) {
-    while( $query->have_posts() ) {
+  if( $query->have_posts() ) :
+    while( $query->have_posts() ) :
       $query->the_post();
-      the_title('<li>', '</li>');
-    }
-  }
-  wp_reset_postdata();
   ?>
+
+  <li>
+    <a href="<?php the_permalink() ?>" class="text-body"><?php echo get_the_title() ?></a>
+  </li>
+
+  <?php endwhile; endif; wp_reset_postdata(); ?>
   </ul>
 </div>

@@ -210,6 +210,10 @@ header.scrolled {
   background-color: #fff;
 }
 
+.navbar .navbar-brand {
+  align-self: center;
+}
+
 .navbar .navbar-brand img {
   width: 170px;
   height: 80px;
@@ -697,6 +701,15 @@ article.post .post-content > * {
   text-align: center;
 }
 
+#banner-archive .liste-type li a {
+  text-decoration: none !important;
+}
+
+#banner-archive .liste-type li a:hover,
+#banner-archive .liste-type li a:focus {
+  color: var(--primary);
+}
+
 #banner-archive .liste-type li:not(:last-of-type)::after {
   content: '';
   width: 1px;
@@ -759,6 +772,7 @@ article.post .post-content > * {
 #nos-enseignes .information {
   width: 100%;
   margin-top: auto;
+  margin-bottom: auto;
   padding-top: 2rem;
   padding-left: 2rem;
   padding-bottom: 2rem;
@@ -837,6 +851,10 @@ article.post .post-content > * {
   margin-bottom: 100px;
 }
 
+#metier article img {
+  max-width: 100%;
+}
+
 #metier article [class^='text-'] {
   max-height: 650px;
   overflow-y: hidden;
@@ -857,6 +875,7 @@ article.post .post-content > * {
 }
 
 #metier .information {
+  width: 100%;
   position: absolute;
   bottom: -1px;
   right: 0;
@@ -968,6 +987,7 @@ article.post .post-content > * {
 #mission {
   margin-bottom: 4rem;
   padding: 4rem 0;
+  min-height: 750px;
 }
 
 @media (min-width: 1281px) {
@@ -983,6 +1003,7 @@ article.post .post-content > * {
 #profil .img-cover,
 #mission .img-cover {
   width: 100%;
+  max-height: 550px;
 }
 
 @media (min-width: 768px) {
@@ -1034,4 +1055,13 @@ article.post .post-content > * {
 
 #mission .text {
   color: #fff;
+}
+
+.social-icons-lists {
+  padding-left: 0;
+}
+
+.social-icons-lists .socicon {
+  color: #000 !important;
+  padding: 0.25rem !important;
 }

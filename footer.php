@@ -14,6 +14,9 @@
             <?php else: ?>
               <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.png' ) ?>" alt="<?php echo get_bloginfo( 'name' ) ?>">
             <?php endif ?>
+            <div class="mt-4">
+              <?php echo do_shortcode( '[social_icons_group id="1080"]' ) ?>
+            </div>
           </div>
           <div class="col-sm-6">
             <?php if( is_active_sidebar( 'footer-menu' ) ) dynamic_sidebar( 'footer-menu' ) ?>
