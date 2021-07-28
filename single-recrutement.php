@@ -6,7 +6,7 @@
   $feature_image = get_the_post_thumbnail_url( $post->ID ) ? get_the_post_thumbnail_url( $post->ID ) : get_the_post_thumbnail_url( $enseigne->ID );
   $logo_id = get_post_field( 'logo', $enseigne );
   $logo_url = wp_get_attachment_url( $logo_id );
-  $ville = wp_get_post_terms( $enseigne->ID, 'ville' );
+  $ville = get_term_by( 'id', get_field( 'ville' ), 'ville' );
   $photo_profil_id = get_post_field( 'photo_profil', $metier );
   $photo_profil_url = wp_get_attachment_url( $photo_profil_id );
   $photo_mission_id = get_post_field( 'photo_mission', $metier );
@@ -24,11 +24,7 @@
               <img width="150" src="<?php echo $logo_url ?>" alt="<?php echo get_the_title( $enseigne ) ?>" class="mb-4">
               <div class="text-box mt-4">
                 <span class="bg-white text-primary font-weight-bold h5 p-2">
-                <?php
-                  foreach ($ville as $v) {
-                    echo $v->name;
-                  }
-                ?>
+                  <?php echo $ville->name; ?>
                 </span>
               </div>
               <a href="#postuler" class="btn text-white">Postuler</a>

@@ -43,7 +43,7 @@ function loops_portfolio_shortcode() {
   return $output;
 }
 
-function loops_liste_recrutement() {
+function loops_liste_recrutement_shortcode() {
   $output = '';
   $output .= '<div id="recrutement-filter" class="bg-grey py-4">';
   $output .= '  <div class="container">';
@@ -150,7 +150,7 @@ function loops_liste_recrutement() {
   return $output;
 }
 
-function loops_related_recrutement() {
+function loops_related_recrutement_shortcode() {
   global $post;
   $output = '';
 
@@ -226,10 +226,28 @@ function loops_related_recrutement() {
   return $output;
 }
 
+function loops_temoignage_shortcode() {
+  global $post;
+  $collaborateur = get_post( get_post_field( 'temoignage_de', $post ) );
+  $nom = $collaborateur->post_title;
+  $poste_occupe = get_post_field( 'poste_occupe', $collaborateur );
+  $enseigne = get_post( get_post_field( 'enseigne', $collaborateur ) );
+  $nom_enseigne = $enseigne->post_title;
+  $ville = get_the_terms( $enseigne, 'ville' );
+
+  $output = '<div>';
+  $output .= '<h5>' . $nom . '</h5>';
+  $output .= '<p>' . $poste_occupe . ' chez ' . $nom_enseigne . ' ' . $ville[0]->name. '</p>';
+  $output .=  '</div>';
+
+  return $output;
+}
+
 function loops_add_shortcode() {
   add_shortcode( 'loops_portfolio', 'loops_portfolio_shortcode' );
-  add_shortcode( 'loops_recrutement', 'loops_liste_recrutement' );
-  add_shortcode( 'loops_related_recrutement', 'loops_related_recrutement' );
+  add_shortcode( 'loops_recrutement', 'loops_liste_recrutement_shortcode' );
+  add_shortcode( 'loops_related_recrutement_shortcode', 'loops_related_recrutement' );
+  add_shortcode( 'loops_temoignage', 'loops_temoignage_shortcode' );
 }
 
 add_action( 'init', 'loops_add_shortcode' );

@@ -125,7 +125,7 @@ p {
 
 @media (min-width: 992px) {
   #hero {
-    height: 650px;
+    height: 550px;
   }
 }
 
@@ -707,7 +707,7 @@ article.post .post-content > * {
 
 @media (min-width: 1025px) {
   #banner-archive [class^='col-'] {
-    height: 650px;
+    height: 550px;
   }
 }
 

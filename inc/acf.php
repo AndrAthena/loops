@@ -334,7 +334,7 @@ acf_add_local_field_group(array(
 			'taxonomy' => '',
 			'allow_null' => 0,
 			'multiple' => 0,
-			'return_format' => 'object',
+			'return_format' => 'id',
 			'ui' => 1,
 		),
 	),
