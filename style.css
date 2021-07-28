@@ -519,9 +519,11 @@ footer .footer-bottom .border-right {
  *           Home: Hero slider              *
  *==========================================*/
 
-#banner-archive h1,
-#banner h1 {
-  line-height: 3.5rem;
+@media (min-width: 1024px) {
+  #banner-archive h1,
+  #banner h1 {
+    line-height: 3.5rem;
+  }
 }
 
 #banner-archive h1 span,
@@ -1099,4 +1101,28 @@ article.post .post-content > * {
 
 #mission .text {
   color: #fff;
+}
+
+/*---------------------------*/
+/*     Input type: file      */
+/*---------------------------*/
+
+.elementor-field-type-upload label {
+  width: 100%;
+  text-align: right;
+}
+
+.elementor-field-type-upload label svg {
+  width: 24px;
+  margin-left: 1rem;
+  fill: var(--primary);
+}
+
+.elementor-upload-field {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }

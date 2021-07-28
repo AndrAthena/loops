@@ -29,4 +29,18 @@
       result.append(response);
     });
   });
+
+  var inputFile = $('.elementor-upload-field');
+  $.each(inputFile, function () {
+    var label = $(this).siblings();
+    var defaultLabel = label.text();
+
+    $(this).on('change', function (e) {
+      if (this.files && this.files.length) {
+        label.text(this.files[0].name);
+      } else {
+        label.text(defaultLabel);
+      }
+    });
+  });
 })(jQuery);
