@@ -58,7 +58,7 @@ function loops_breadcrumb() {
     } elseif ( is_year() ) {
       echo $before . get_the_time('Y') . $after;
  
-    } elseif ( is_single() || is_singular() && !is_attachment() ) {
+    } elseif ( is_single() && !is_attachment() ) {
       if ( get_post_type() != 'post' ) {
         $post_type = get_post_type_object(get_post_type());
         $slug = $post_type->rewrite;
