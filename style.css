@@ -193,10 +193,9 @@ header {
   background-color: transparent;
 } */
 
-header.scrolled {
-  /* background-color: var(--primary); */
-  background-color: transparent;
-}
+/* .home header.scrolled {
+  background-color: var(--primary);
+} */
 
 .navbar {
   padding: 0;
@@ -232,7 +231,7 @@ header.scrolled {
   transition: all 0.2s ease;
 }
 
-/* .home header .navbar-nav > .nav-item > .nav-link {
+/* .home header.scrolled .navbar-nav > .nav-item > .nav-link {
   color: #fff;
 } */
 
@@ -259,9 +258,9 @@ header.scrolled {
     padding: 0;
   }
 
-  /* .home .navbar-collapse {
+  .home .navbar-collapse {
     background-color: transparent;
-  } */
+  }
 
   .navbar-collapse {
     margin-top: 0;
