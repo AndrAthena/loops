@@ -185,24 +185,26 @@ header {
   min-height: 112px;
   background-color: #fff;
   z-index: 100;
+  transition: background ease 0.2s;
 }
 
-.home header {
+/* .home header {
   position: fixed;
   background-color: transparent;
-}
+} */
 
 header.scrolled {
-  background-color: var(--primary);
+  /* background-color: var(--primary); */
+  background-color: transparent;
 }
 
 .navbar {
   padding: 0;
 }
 
-.home .navbar-collapse {
+/* .home .navbar-collapse {
   background-color: var(--primary);
-}
+} */
 
 .navbar-collapse {
   margin-top: 1rem;
@@ -230,9 +232,9 @@ header.scrolled {
   transition: all 0.2s ease;
 }
 
-.home header .navbar-nav > .nav-item > .nav-link {
+/* .home header .navbar-nav > .nav-item > .nav-link {
   color: #fff;
-}
+} */
 
 .navbar-nav > .current-menu-item > .nav-link {
   font-weight: 600;
@@ -257,9 +259,9 @@ header.scrolled {
     padding: 0;
   }
 
-  .home .navbar-collapse {
+  /* .home .navbar-collapse {
     background-color: transparent;
-  }
+  } */
 
   .navbar-collapse {
     margin-top: 0;

@@ -1,5 +1,5 @@
 (function ($) {
-  var header = $('.home header');
+  var header = $('header');
   $(window).on('scroll load', function () {
     if (window.scrollY > 100) header.addClass('scrolled');
     else header.removeClass('scrolled');
